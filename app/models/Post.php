@@ -1,0 +1,172 @@
+<?php
+namespace App\Models;
+use \PDO;
+
+class Post {
+
+    protected $conn;
+
+    public function __construct(PDO $conn)    {
+        $this->conn = $conn;
+    }
+
+    public function all()    {
+        $result = [];
+        $stm = $this->conn->query('select * from movimenti WHERE YEAR ( datecreated ) = YEAR(CURDATE()) ORDER BY id DESC;');
+
+        if($stm && $stm->rowCount()){
+            $result =  $stm->fetchAll(PDO::FETCH_OBJ);
+        }
+        return $result;
+    }
+
+    public function year() {
+        $result = [];
+        $stm = $this->conn->query('select * from movimenti WHERE YEAR ( datecreated ) = 2021 ORDER BY id DESC;');
+
+        if($stm && $stm->rowCount()){
+            $result =  $stm->fetchAll(PDO::FETCH_OBJ);
+        }
+        return $result;
+    }
+
+    public function yesterday() {
+        $result = [];
+        $stm = $this->conn->query('SELECT * FROM movimenti WHERE DATE(datecreated) = DATE(NOW() - INTERVAL 1 DAY)');
+
+        if($stm && $stm->rowCount()){
+            $result =  $stm->fetchAll(PDO::FETCH_OBJ);
+        }
+
+        $sql2 = 'select sum(importo) from movimenti WHERE DATE(datecreated) = DATE(NOW() - INTERVAL 1 DAY)';
+        $stm2 = $this->conn->prepare($sql2);
+        $stm2->execute();
+        $result2 = $stm2->fetch(PDO::FETCH_COLUMN);
+
+        echo "<h2 class=\"h3-totale\">TOTALE : ";
+        echo $result2;
+        echo " €</h3>";
+        return $result ;
+    }
+
+/*
+    public function sommaIeri() {
+        $result ;
+        $sql = 'select sum(importo) from movimenti WHERE DATE(datecreated) = DATE(NOW() - INTERVAL 1 DAY)';
+        $stm = $this->conn->prepare($sql);
+        $stm->execute();
+        $result = $stm->fetch(PDO::FETCH_COLUMN);
+        return $result;
+    }*/
+
+    public function perdata($data) {
+        $result = [];
+        if($data) {
+            $sql = 'SELECT * FROM movimenti WHERE DATE(datecreated) = DATE(:datecreated)';
+            //$sql .= '2019-04-24)';
+
+            $stm = $this->conn->prepare($sql);
+            $stm->execute(['datecreated' => $data['data']]);
+
+            if ($stm && $stm->rowCount()) {
+                $result = $stm->fetchAll(PDO::FETCH_OBJ);
+            }
+
+            $sql2 = 'SELECT sum(importo) FROM movimenti WHERE DATE(datecreated) = DATE(:datecreated)';
+            $stm2 = $this->conn->prepare($sql2);
+            $stm2->execute(['datecreated' => $data['data']]);
+            $result2 = $stm2->fetch(PDO::FETCH_COLUMN);
+
+            echo "<h2 class=\"h3-totale\">TOTALE : ";
+            echo round($result2,3);
+            echo " €</h2>";
+            return $result;
+        }
+    }
+
+    public function somma() {
+        $result = []; ;
+        $sql = 'select sum(importo) from movimenti';
+        $stm = $this->conn->prepare($sql);
+        $stm->execute();
+        $result = $stm->fetch(PDO::FETCH_COLUMN);
+        return $result;
+    }
+
+    public function find($id) {
+
+        $result = [];
+        $sql = 'select * from movimenti where id = :id';
+        $stm = $this->conn->prepare($sql);
+        $stm->execute(['id' => $id]);
+        if($stm){
+            $result = $stm->fetch(PDO::FETCH_OBJ);
+        }
+        return $result;
+    }
+
+    public function save(array $data = [])    {
+
+        $sql = 'INSERT INTO movimenti (categoria, descrizione, datecreated, entratauscita, importo)';
+        $sql .= 'values (:categoria, :descrizione, :datecreated, :entratauscita, :importo)';
+
+        $stm = $this->conn->prepare($sql);
+
+        $stm->execute([
+            'categoria' => $data['cat'],
+            'descrizione'=>  $data['descrizione'],
+           /* 'datecreated' => date('Y-m-d H:i:s'),*/
+            'datecreated' => $data['data'],
+            'entratauscita' => $data['inout'],
+            'importo' => $data['importo'],
+        ]);
+       /* var_dump($data);*/
+
+
+    return $stm->rowCount();
+
+    }
+
+    public function store(array $data = [])
+    {
+        $sql = 'UPDATE movimenti SET entratauscita =:inout, categoria =:categoria, descrizione =:descrizione, importo =:importo, datecreated =:datecreated ';
+        $sql .= ' WHERE id = :id';
+
+        $stm = $this->conn->prepare($sql);
+
+        $stm->execute([
+                'id' => $data['id'],
+                'inout' => $data['inout'],
+                'categoria' => $data['cat'],
+                'descrizione'=>  $data['descrizione'],
+                'importo'=>  $data['importo'],
+                'datecreated' => $data['datecreated']
+            ]
+        );
+
+        return $stm->rowCount();
+
+    }
+    public function delete(int $id)
+    {
+
+        $sql = 'DELETE FROM movimenti WHERE id = :id';
+
+        $stm = $this->conn->prepare($sql);
+        $stm->bindParam(':id',$id, PDO::PARAM_INT);
+        $stm->execute();
+
+        return $stm->rowCount();
+    }
+
+    public function allCat() {
+        $result = [];
+        $stm = $this->conn->query("SELECT `categoria` FROM `movimenti`");
+        if($stm && $stm->rowCount()){
+            $result =  $stm->fetchAll(PDO::FETCH_OBJ);
+        }
+        return $result;
+    }
+
+
+}

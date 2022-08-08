@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="4410122b-8668-4988-a9ef-ca14c99dfb85" name="213.202.230.131" url="http://server">
+        <fileTransfer rootFolder="/var/www/vhosts/abatonbros.us/httpdocs/wp-content" accessType="SFTP" host="server" port="22" sshConfigId="d7aaf1b4-7e5c-477c-8903-b668a0d27013" sshConfig="213.202.230.131">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="8fb78b6e-0b37-4704-a2b9-a5c21bbe1b43" name="server5 bilancio" url="http://server5.2clic.it">
+        <fileTransfer rootFolder="/var/www/vhosts/molinari-apps.eu" accessType="SFTP" host="server5.2clic.it" port="22" sshConfigId="d8022c91-8539-4465-b8c8-643b063605fa" sshConfig="server5 bilancio">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
