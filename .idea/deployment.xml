@@ -12,7 +12,7 @@
       <paths name="server5 bilancio">
         <serverdata>
           <mappings>
-            <mapping deploy="/bilancio.molinari-apps.eu/" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/bilanciodueclic.molinari-apps.eu/" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

@@ -8,8 +8,10 @@ require_once __DIR__ . '/../db/DbPdo.php';
 require_once __DIR__ . '/../db/DbFactory.php';
 
 require_once __DIR__ . '/../app/controllers/PostController.php';
+require_once __DIR__ . '/../app/controllers/CatController.php';
 
 require_once __DIR__ . '/../app/models/Post.php';
+require_once __DIR__ . '/../app/models/Cathegory.php';
 
 require_once __DIR__ . '/../helpers/functions.php';
 

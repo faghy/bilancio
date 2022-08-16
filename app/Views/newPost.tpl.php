@@ -18,21 +18,23 @@ $today = date("Y-m-d");
             <div class="form-group">
                 <label for="categoria">Categoria</label>
                 <select name="cat">
-                    <option type="" name="categ" id="categoria">VENDITA</option>
-                    <option type="" name="categ" id="categoria">ATT VODAFONE</option>
-                    <option type="" name="categ" id="categoria">ATT FASTWEB</option>
-                    <option type="" name="categ" id="categoria">ATT HO</option>
-                    <option type="" name="categ" id="categoria">ATT KENA</option>
-                    <option type="" name="categ" id="categoria">ATT DIGI</option>
-                    <option type="" name="categ" id="categoria">RIC TIM</option>
-                    <option type="" name="categ" id="categoria">RIC VODAFONE</option>
-                    <option type="" name="categ" id="categoria">RIC FASTWEB</option>
-                    <option type="" name="categ" id="categoria">RIC HO</option>
-                    <option type="" name="categ" id="categoria">RIC KENA</option>
-                    <option type="" name="categ" id="categoria">RIC ALTRI</option>
-                    <option type="" name="categ" id="categoria">SERVIZI</option>
+                    <?php
+                    foreach ($cats as $cat) {
+                        ?>
+                    <option type="" name="categ" id="categoria"><?php echo $cat->descriz_cat; ?></option>
+                    <?php
+                    }
+                    ?>
+
+                    <!--
+                    <option type="" name="categ" id="categoria">HOSTING</option>
+                    <option type="" name="categ" id="categoria">LAVORI</option>
                     <option type="" name="categ" id="categoria">FORNITORI</option>
-                </select>
+                    <option type="" name="categ" id="categoria">COLLABORATORI</option>
+                    <option type="" name="categ" id="categoria">AFFITTO</option>
+                    <option type="" name="categ" id="categoria">ATT DIGI</option>
+-->
+                </select><span><a href="/categoria/create">  Aggiungi</a></span>
             </div>
 
             <div class="form-group">

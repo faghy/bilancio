@@ -10,6 +10,7 @@ require_once __DIR__ . '/../core/bootstrap.php';
 $data = require __DIR__ . '/../config/database.php';
 $appConfig = require __DIR__ . '/../config/app.config.php';
 
+
 try {
 
     $conn = App\db\DbFactory::create($data)->getConn();

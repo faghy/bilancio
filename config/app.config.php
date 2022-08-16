@@ -12,14 +12,18 @@ return [
                 'posts/cerca' => 'App\Controllers\PostController@cercadata',
                 'post/:id' => 'App\Controllers\PostController@show',
                 'post/:postid/edit' => 'App\Controllers\PostController@edit',
-                'categorie' => 'App\Controllers\PostController@getCategory'
+                'categorie' => 'App\Controllers\CatController@getCategories',
+                'categoria/create' => 'App\Controllers\CatController@create',
+                'categoria/:categoria' => 'App\Controllers\PostController@editcat'
             ],
 
             'POST' => [
                 'post/save' => 'App\Controllers\PostController@save',
                 'post/:id/store' => 'App\Controllers\PostController@store',
                 'posts/cerca' => 'App\Controllers\PostController@cerca',
-                'post/:id/delete' => 'App\Controllers\PostController@delete'
+                'post/:id/delete' => 'App\Controllers\PostController@delete',
+                'categoria/:categoria/store' => 'App\Controllers\PostController@store'
+
             ]
         ]
 ]

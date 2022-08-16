@@ -3,17 +3,20 @@
 namespace App\Controllers;
 use \PDO;
 use App\Models\Post;
+use App\Models\Cathegory;
 
 class PostController {
     protected $layout = 'layout/index.tpl.php';
     public $content ='';
 
     protected $conn;
-    protected $Post ;
+    protected $Post;
+    protected $Cat;
 
     public function __construct(PDO $conn) {
         $this->conn = $conn;
         $this->Post = new Post($conn);
+        $this->Cat = new Cathegory($conn);
     }
 
     public function display() {
@@ -22,7 +25,8 @@ class PostController {
 
     public function getPosts()    {
         $posts = $this->Post->all();
-        $this->content =  view('posts', compact('posts'));
+        $cats = $this->Cat->all();
+        $this->content =  view('posts', compact('posts','cats'));
     }
 
     public function getPostsYear()    {
@@ -59,8 +63,14 @@ class PostController {
         $this->content =  view('editPost', compact('post'));
     }
 
+    public function editcat( $postid ) {
+        $post = $this->Post->find($postid);
+        $this->content =  view('editCat', compact('post'));
+    }
+
     public function create() {
-        $this->content = view('newPost');
+        $cats = $this->Cat->all();
+        $this->content = view('newPost', compact('cats'));
     }
 
     public function save() {

@@ -22,11 +22,14 @@ class Router {
         return $this->routes;
     }
 
- public function dispatch() {
+    /**
+     * @throws Exception
+     */
+    public function dispatch() {
       
-       $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+       $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH); //parsifico l'url eliminando l'inizio e la query string es: /post/2
        
-      $url = trim($url ,'/');
+      $url = trim($url ,'/'); // toglie gli slash
       
      $method = $_SERVER['REQUEST_METHOD'];
       return $this->processQueue($url, $method);
@@ -72,7 +75,7 @@ class Router {
          try {
              
              if(is_callable($callback)){
-               return   call_user_func_array($callback, $matches);
+               return call_user_func_array($callback, $matches);
              }
              
          $tokens = explode('@',$callback);
@@ -81,7 +84,7 @@ class Router {
          
          $method = $tokens[1];
          
-           $class =  new $controller($this->conn);
+           $class = new $controller($this->conn);
            
             if(method_exists($controller, $method)){
               
