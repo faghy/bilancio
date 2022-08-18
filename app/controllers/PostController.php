@@ -63,10 +63,7 @@ class PostController {
         $this->content =  view('editPost', compact('post'));
     }
 
-    public function editcat( $postid ) {
-        $post = $this->Post->find($postid);
-        $this->content =  view('editCat', compact('post'));
-    }
+
 
     public function create() {
         $cats = $this->Cat->all();

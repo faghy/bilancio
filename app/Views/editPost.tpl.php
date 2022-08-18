@@ -42,7 +42,7 @@
     <div class="form-group">
         
         <label for="descrizione">Descrizione</label>
-        <input class="form-control" name="descrizione" type="text" value="<?=$post->descrizione?>" name="descrizione" i="descrizione" required>
+        <input class="form-control" name="descrizione" type="text" value="<?=$post->descrizione?>" name="descrizione" id="descrizione" required>
            
     </div>
 

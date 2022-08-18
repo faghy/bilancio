@@ -18,6 +18,9 @@ require ('header.php');
             <li class="nav-item ">
                 <a class="nav-link" href="/posts/cerca">Cerca per Data</a>
             </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="/categorie">Categorie</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="/post/create">Nuova operazione</a>
             </li>

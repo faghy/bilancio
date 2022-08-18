@@ -14,7 +14,8 @@ return [
                 'post/:postid/edit' => 'App\Controllers\PostController@edit',
                 'categorie' => 'App\Controllers\CatController@getCategories',
                 'categoria/create' => 'App\Controllers\CatController@create',
-                'categoria/:categoria' => 'App\Controllers\PostController@editcat'
+                #'categoria/:categoria' => 'App\Controllers\CatController@editcat',
+                'categoria/:catid/edit' => 'App\Controllers\CatController@editcat'
             ],
 
             'POST' => [
@@ -22,8 +23,9 @@ return [
                 'post/:id/store' => 'App\Controllers\PostController@store',
                 'posts/cerca' => 'App\Controllers\PostController@cerca',
                 'post/:id/delete' => 'App\Controllers\PostController@delete',
-                'categoria/:categoria/store' => 'App\Controllers\PostController@store'
-
+                'cat/save' => 'App\Controllers\CatController@save',
+               # 'categoria/:categoria/store' => 'App\Controllers\CatController@store',
+                'categoria/:id/store' => 'App\Controllers\CatController@store'
             ]
         ]
 ]

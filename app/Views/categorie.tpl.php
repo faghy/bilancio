@@ -7,11 +7,11 @@
     </thead>
     <tbody>
 <?php
-foreach ($posts as $post) :
+foreach ($cats as $cat) :
     ?>
         <tr>
             <td>
-                <h4><a href="/categoria/<?=$post->categoria?>"><?=htmlentities($post->categoria)?></a></h4></td>
+                <h4><a href="/categoria/<?= $cat->id ?>/edit/"><?=htmlentities($cat->descriz_cat)?></a></h4></td>
             <td></td>
             <td></td>
             <td></td>

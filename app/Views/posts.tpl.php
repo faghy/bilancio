@@ -35,13 +35,6 @@ endforeach;
 ?></tbody>
 </table>
 
-<?php
-
-foreach ($cats as $cat) {
-    echo $cat->descriz_cat;?> <br />
-<?php
-}
-?>
 
 
 

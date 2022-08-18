@@ -23,17 +23,33 @@ class CatController
 
     public function getCategories()    {
         $cats = $this->Cat->all();
-        $this->content =  view('categories', compact('cats'));
+        $this->content =  view('categorie', compact('cats'));
     }
 
     public function create() {
         $this->content = view('newCat');
     }
 
+    public function editcat( $catid ) {
+        $cats = $this->Cat->find($catid);
+        $cats_all = $this->Cat->all();
+        $this->content =  view('editCat', compact('cats','cats_all'));
+    }
+
     public function save() {
         $this->Cat->save($_POST);
         redirect('/');
     }
+
+    public function store(string $id) {
+        try {
+            $result = $this->Cat->store($_POST);
+            redirect('/categorie');
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
 
 
 
