@@ -21,8 +21,11 @@
 
                 <form class="form-inline"  action="/post/<?= $post->id ?>/delete" method="POST">
                     <input type="submit" class="btn btn-danger" value="CANCELLA">
-
                 </form>
+                <?php
+//var_dump($cats);
+              echo $cats->descriz_cat;
+              ?>
             </div>
         </div>
     </div>

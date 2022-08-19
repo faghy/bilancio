@@ -14,7 +14,9 @@ foreach ($posts as $post) :
     ?>
         <tr>
             <td>
-                <h4><a href="/post/<?=$post->id?>"><?=htmlentities($post->categoria)?></a></h4></td>
+                <h4><a href="/post/<?=$post->id?>"><?=htmlentities($post->categoria)?></a></h4>
+                <p></p>
+            </td>
             <td><p><?=htmlentities($post->descrizione)?></p></td>
             <td><time datetime="<?=htmlentities($post->datecreated)?>"><?=htmlentities($post->datecreated)?></time></td>
             <td>
@@ -32,6 +34,7 @@ foreach ($posts as $post) :
 
 <?php
 endforeach;
+//var_dump($cats);
 ?></tbody>
 </table>
 

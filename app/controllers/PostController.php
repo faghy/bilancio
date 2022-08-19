@@ -11,7 +11,7 @@ class PostController {
 
     protected $conn;
     protected $Post;
-    protected $Cat;
+   // protected $Cat;
 
     public function __construct(PDO $conn) {
         $this->conn = $conn;
@@ -23,10 +23,18 @@ class PostController {
         require $this->layout;
     }
 
-    public function getPosts()    {
+    public function getPosts()  {
         $posts = $this->Post->all();
-        $cats = $this->Cat->all();
-        $this->content =  view('posts', compact('posts','cats'));
+       // $cats = new Cathegory($this->conn);
+       // $cats = $cats->allpostid($postid);
+        $this->content =  view('posts', compact('posts'));
+    }
+
+    public function show( $postid )    {
+        $post = $this->Post->find($postid);
+
+        $cats = $this->Cat->allpostid($postid);
+        $this->content = view('post', compact('post', 'cats'));
     }
 
     public function getPostsYear()    {
@@ -53,17 +61,12 @@ class PostController {
         return $somma;
     }
 
-    public function show( $postid )    {
-         $post = $this->Post->find($postid);
-        $this->content = view('post', compact('post'));
-    }
-
     public function edit( $postid ) {
         $post = $this->Post->find($postid);
-        $this->content =  view('editPost', compact('post'));
+
+        $cats = $this->Cat->all();
+        $this->content =  view('editPost', compact('post','cats'));
     }
-
-
 
     public function create() {
         $cats = $this->Cat->all();

@@ -50,6 +50,15 @@ class CatController
         }
     }
 
+    public function delete( $id){
+        try {
+            $result = $this->Cat->delete((int)$id);
+            redirect('/categorie');
+        } catch (PDOException $e){
+            return $e->getMessage();
+        }
+    }
+
 
 
 

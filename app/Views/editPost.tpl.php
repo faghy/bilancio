@@ -9,19 +9,44 @@
     <input type="hidden" name="id" value="<?=$post->id?>">
 
     <div class="form-group">
-        <div >
+        <div>
             <label for="inout">Entrata</label>
-            <input type="radio" id="IN" name="inout" value="1" checked >
+
+            <?php
+            if ($post->entratauscita == 1 ) {
+                echo "<input type='radio' id='IN' name='inout' value='1' checked >
+        </div>
+        <div>
+            <label for='inout'>Uscita</label>
+            <input type='radio' id='OUT' name='inout' value='0' >";
+            } else {
+                echo "<input type='radio' id='IN' name='inout' value='1'  >
+        </div>
+        <div>
+            <label for='inout'>Uscita</label>
+            <input type='radio' id='OUT' name='inout' value='0' checked>";
+            }
+            ?>
+
+        <!--    <input type="radio" id="IN" name="inout" value="1"  >
         </div>
         <div>
             <label for="inout">Uscita</label>
-            <input type="radio" id="OUT" name="inout" value="0" >
+            <input type="radio" id="OUT" name="inout" value="0" checked>-->
         </div>
     </div>
 
     <div class="form-group">
         <label for="categoria">Categoria</label>
         <select name="cat">
+            <?php
+            foreach ($cats as $cat) {
+                ?>
+                <option type="" name="categ" id="categoria"><?php echo $cat->descriz_cat; ?></option>
+                <?php
+            }
+            ?>
+            <!--
             <option type="" name="categ" id="categoria">VENDITA</option>
             <option type="" name="categ" id="categoria">ATT VODAFONE</option>
             <option type="" name="categ" id="categoria">ATT FASTWEB</option>
@@ -35,7 +60,7 @@
             <option type="" name="categ" id="categoria">RIC KENA</option>
             <option type="" name="categ" id="categoria">RIC ALTRI</option>
             <option type="" name="categ" id="categoria">SERVIZI</option>
-            <option type="" name="categ" id="categoria">FORNITORI</option>
+            <option type="" name="categ" id="categoria">FORNITORI</option>-->
         </select>
     </div>
 

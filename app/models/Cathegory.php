@@ -21,6 +21,25 @@ class Cathegory
         return $result;
     }
 
+    public function allpostid(int $postid)    {
+
+        $sql = 'select * from categorie where post_id = :postid';
+
+        $stm = $this->conn->prepare($sql);
+       // $stm->bindParam(':postid',$postid, PDO::PARAM_INT);
+        $stm->execute([':postid' => $postid]);
+      //  $stm->execute();
+        $result = $stm->fetch(PDO::FETCH_OBJ);
+        return $result;
+    }
+
+    public function select(int $postid) {
+        $stm = $this->conn->query('select * from categorie where $post_id=:postid');
+        $stm->bindParam('postid',$postid, PDO::PARAM_INT);
+        $stm->execute();
+        return $stm->fetch();
+    }
+
     public function find($id) {
 
         $result = [];
@@ -62,8 +81,18 @@ class Cathegory
         );
 
         return $stm->rowCount();
+    }
 
+    public function delete(int $id)
+    {
 
+        $sql = 'DELETE FROM categorie WHERE id = :id';
+
+        $stm = $this->conn->prepare($sql);
+        $stm->bindParam(':id',$id, PDO::PARAM_INT);
+        $stm->execute();
+
+        return $stm->rowCount();
     }
 
 

@@ -25,7 +25,8 @@ return [
                 'post/:id/delete' => 'App\Controllers\PostController@delete',
                 'cat/save' => 'App\Controllers\CatController@save',
                # 'categoria/:categoria/store' => 'App\Controllers\CatController@store',
-                'categoria/:id/store' => 'App\Controllers\CatController@store'
+                'categoria/:id/store' => 'App\Controllers\CatController@store',
+                'categoria/:id/delete' => 'App\Controllers\CatController@delete',
             ]
         ]
 ]
