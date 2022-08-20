@@ -70,7 +70,7 @@ class Cathegory
     public function store(array $data = [])
     {
         $sql = 'UPDATE categorie SET descriz_cat =:descriz_cat';
-        $sql .= ' WHERE id = :id';
+        $sql .= ' WHERE cat_id = :id';
 
         $stm = $this->conn->prepare($sql);
 
