@@ -14,7 +14,6 @@ return [
                 'post/:postid/edit' => 'App\Controllers\PostController@edit',
                 'categorie' => 'App\Controllers\CatController@getCategories',
                 'categoria/create' => 'App\Controllers\CatController@create',
-                #'categoria/:categoria' => 'App\Controllers\CatController@editcat',
                 'categoria/:catid/edit' => 'App\Controllers\CatController@editcat'
             ],
 

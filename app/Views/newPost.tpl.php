@@ -21,7 +21,7 @@ $today = date("Y-m-d");
                     <?php
                     foreach ($cats as $cat) {
                         ?>
-                    <option type="" name="categ" id="categoria"><?php echo $cat->descriz_cat; ?></option>
+                    <option type="" name="categ" id="categoria" value="<?= $cat->cat_id?>"><?=$cat->descriz_cat?></option>
                     <?php
                     }
                     ?>

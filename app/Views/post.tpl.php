@@ -6,9 +6,9 @@
 
                 <time datetime="<?= $post->datecreated ?>"><?= $post->datecreated ?></time>
                 <?=htmlentities($post->descrizione)?><br />
-            <h4><?=htmlentities($post->categoria)?></h4>
+            <h4><?=htmlentities($post->descriz_cat)?></h4>
             <time datetime="<?=htmlentities($post->datecreated)?>"><?=htmlentities($post->datecreated)?></time>
-            <p><?=htmlentities($post->entratauscita)?></p>
+            <p><?php if(htmlentities($post->entratauscita) == 0) echo "uscita"; else echo "entrata";?></p>
             <h5><?=htmlentities($post->importo)?> €</h5>
 
 
@@ -22,10 +22,6 @@
                 <form class="form-inline"  action="/post/<?= $post->id ?>/delete" method="POST">
                     <input type="submit" class="btn btn-danger" value="CANCELLA">
                 </form>
-                <?php
-//var_dump($cats);
-              echo $cats->descriz_cat;
-              ?>
             </div>
         </div>
     </div>

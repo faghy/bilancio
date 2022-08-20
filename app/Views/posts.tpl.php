@@ -14,7 +14,7 @@ foreach ($posts as $post) :
     ?>
         <tr>
             <td>
-                <h4><a href="/post/<?=$post->id?>"><?=htmlentities($post->categoria)?></a></h4>
+                <h4><a href="/post/<?=$post->id?>"><?=htmlentities($post->descriz_cat)?></a></h4>
                 <p></p>
             </td>
             <td><p><?=htmlentities($post->descrizione)?></p></td>

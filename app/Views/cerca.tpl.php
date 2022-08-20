@@ -13,7 +13,7 @@ foreach ($posts as $post) :
     ?>
 <tr>
     <td>
-        <h4><a href="/post/<?=$post->id?>"><?=htmlentities($post->categoria)?></a></h4></td>
+        <h4><a href="/post/<?=$post->id?>"><?=htmlentities($post->descriz_cat)?></a></h4></td>
     <td><p><?=htmlentities($post->descrizione)?></p></td>
     <td><time datetime="<?=htmlentities($post->datecreated)?>"><?=htmlentities($post->datecreated)?></time></td>
 

@@ -12,10 +12,24 @@ class Post {
 
     public function all()    {
         $result = [];
-        $stm = $this->conn->query('select * from movimenti WHERE YEAR ( datecreated ) = YEAR(CURDATE()) ORDER BY id DESC;');
+        $stm = $this->conn->query('select * from movimenti as m INNER JOIN categorie as c ON m.categoria = c.cat_id WHERE YEAR ( datecreated ) = YEAR(CURDATE()) ORDER BY id DESC;');
+       // $stm = $this->conn->query('select * from movimenti AS m JOIN categorie AS c ON m.categoria = c.id WHERE YEAR ( datecreated ) = YEAR(CURDATE()) ORDER BY id DESC;');
+       // $stm = $this->conn->query('select * from movimenti as m INNER JOIN categorie as c ON m.categoria = c.id');
 
         if($stm && $stm->rowCount()){
             $result =  $stm->fetchAll(PDO::FETCH_OBJ);
+        }
+        return $result;
+    }
+
+    public function find($id) {
+
+        $result = [];
+        $sql = 'select * from movimenti as m INNER JOIN categorie as c ON m.categoria = c.cat_id where id = :id';
+        $stm = $this->conn->prepare($sql);
+        $stm->execute(['id' => $id]);
+        if($stm){
+            $result = $stm->fetch(PDO::FETCH_OBJ);
         }
         return $result;
     }
@@ -32,7 +46,7 @@ class Post {
 
     public function yesterday() {
         $result = [];
-        $stm = $this->conn->query('SELECT * FROM movimenti WHERE DATE(datecreated) = DATE(NOW() - INTERVAL 1 DAY)');
+        $stm = $this->conn->query('SELECT * FROM movimenti as m INNER JOIN categorie as c ON m.categoria = c.cat_id WHERE DATE(datecreated) = DATE(NOW() - INTERVAL 1 DAY)');
 
         if($stm && $stm->rowCount()){
             $result =  $stm->fetchAll(PDO::FETCH_OBJ);
@@ -44,8 +58,8 @@ class Post {
         $result2 = $stm2->fetch(PDO::FETCH_COLUMN);
 
         echo "<h2 class=\"h3-totale\">TOTALE : ";
-        echo $result2;
-        echo " €</h3>";
+        echo round($result2, 3);
+        echo " €</h2>";
         return $result ;
     }
 
@@ -62,7 +76,7 @@ class Post {
     public function perdata($data) {
         $result = [];
         if($data) {
-            $sql = 'SELECT * FROM movimenti WHERE DATE(datecreated) = DATE(:datecreated)';
+            $sql = 'SELECT * FROM movimenti INNER JOIN categorie ON movimenti.categoria = categorie.cat_id WHERE DATE(datecreated) = DATE(:datecreated)';
             //$sql .= '2019-04-24)';
 
             $stm = $this->conn->prepare($sql);
@@ -93,18 +107,6 @@ class Post {
         return $result;
     }
 
-    public function find($id) {
-
-        $result = [];
-        $sql = 'select * from movimenti where id = :id';
-        $stm = $this->conn->prepare($sql);
-        $stm->execute(['id' => $id]);
-        if($stm){
-            $result = $stm->fetch(PDO::FETCH_OBJ);
-        }
-        return $result;
-    }
-
     public function save(array $data = [])    {
 
         $sql = 'INSERT INTO movimenti (categoria, descrizione, datecreated, entratauscita, importo)';
@@ -122,9 +124,7 @@ class Post {
         ]);
        /* var_dump($data);*/
 
-
     return $stm->rowCount();
-
     }
 
     public function store(array $data = [])
@@ -143,13 +143,11 @@ class Post {
                 'datecreated' => $data['datecreated']
             ]
         );
-
         return $stm->rowCount();
-
     }
+
     public function delete(int $id)
     {
-
         $sql = 'DELETE FROM movimenti WHERE id = :id';
 
         $stm = $this->conn->prepare($sql);
@@ -157,15 +155,6 @@ class Post {
         $stm->execute();
 
         return $stm->rowCount();
-    }
-
-    public function allCat() {
-        $result = [];
-        $stm = $this->conn->query("SELECT `categoria` FROM `movimenti`");
-        if($stm && $stm->rowCount()){
-            $result =  $stm->fetchAll(PDO::FETCH_OBJ);
-        }
-        return $result;
     }
 
 

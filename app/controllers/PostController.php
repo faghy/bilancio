@@ -27,14 +27,14 @@ class PostController {
         $posts = $this->Post->all();
        // $cats = new Cathegory($this->conn);
        // $cats = $cats->allpostid($postid);
-        $this->content =  view('posts', compact('posts'));
+        $this->content =  view('posts', compact('posts', ));
     }
 
-    public function show( $postid )    {
+    public function show( $postid ) {
         $post = $this->Post->find($postid);
 
-        $cats = $this->Cat->allpostid($postid);
-        $this->content = view('post', compact('post', 'cats'));
+       // $cats = $this->Cat->allpostid($postid);
+        $this->content = view('post', compact('post'));
     }
 
     public function getPostsYear()    {
