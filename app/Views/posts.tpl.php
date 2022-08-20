@@ -18,7 +18,9 @@ foreach ($posts as $post) :
                 <p></p>
             </td>
             <td><p><?=htmlentities($post->descrizione)?></p></td>
-            <td><time datetime="<?=htmlentities($post->datecreated)?>"><?=htmlentities($post->datecreated)?></time></td>
+            <td><time datetime="<?=htmlentities($post->datecreated)?>"><?php
+                    $timestamp = strtotime($post->datecreated);
+                    echo date("d-m-Y", $timestamp); ?></time></td>
             <td>
         <?php $importo_neg = abs($post->importo)*-1;
         if($post->entratauscita) {

@@ -113,7 +113,7 @@ class Post {
         $sql .= 'values (:categoria, :descrizione, :datecreated, :entratauscita, :importo)';
 
         $stm = $this->conn->prepare($sql);
-
+       //die(var_dump($data));
         $stm->execute([
             'categoria' => $data['cat'],
             'descrizione'=>  $data['descrizione'],
@@ -122,27 +122,29 @@ class Post {
             'entratauscita' => $data['inout'],
             'importo' => $data['importo'],
         ]);
-       /* var_dump($data);*/
+
 
     return $stm->rowCount();
     }
 
     public function store(array $data = [])
     {
-        $sql = 'UPDATE movimenti SET entratauscita =:inout, categoria =:categoria, descrizione =:descrizione, importo =:importo, datecreated =:datecreated ';
-        $sql .= ' WHERE id = :id';
+        $sql = 'UPDATE movimenti SET entratauscita =:entratauscita, categoria =:categoria, descrizione =:descrizione, 
+                     importo =:importo, datecreated =:datecreated WHERE id = :id';
 
         $stm = $this->conn->prepare($sql);
 
-        $stm->execute([
+        $x = $stm->execute([
                 'id' => $data['id'],
-                'inout' => $data['inout'],
+                'entratauscita' => $data['inout'],
                 'categoria' => $data['cat'],
                 'descrizione'=>  $data['descrizione'],
                 'importo'=>  $data['importo'],
                 'datecreated' => $data['datecreated']
             ]
+
         );
+       // die(var_dump($stm->errorInfo()));
         return $stm->rowCount();
     }
 

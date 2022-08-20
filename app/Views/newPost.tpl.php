@@ -25,15 +25,6 @@ $today = date("Y-m-d");
                     <?php
                     }
                     ?>
-
-                    <!--
-                    <option type="" name="categ" id="categoria">HOSTING</option>
-                    <option type="" name="categ" id="categoria">LAVORI</option>
-                    <option type="" name="categ" id="categoria">FORNITORI</option>
-                    <option type="" name="categ" id="categoria">COLLABORATORI</option>
-                    <option type="" name="categ" id="categoria">AFFITTO</option>
-                    <option type="" name="categ" id="categoria">ATT DIGI</option>
--->
                 </select><span><a href="/categoria/create">  Aggiungi</a></span>
             </div>
 

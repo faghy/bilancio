@@ -3,13 +3,16 @@
     <div class="row">
         <div class="col-md-6 push-md-3">
             <h1>Operazione</h1>
+<br />
 
-                <time datetime="<?= $post->datecreated ?>"><?= $post->datecreated ?></time>
-                <?=htmlentities($post->descrizione)?><br />
-            <h4><?=htmlentities($post->descriz_cat)?></h4>
-            <time datetime="<?=htmlentities($post->datecreated)?>"><?=htmlentities($post->datecreated)?></time>
-            <p><?php if(htmlentities($post->entratauscita) == 0) echo "uscita"; else echo "entrata";?></p>
-            <h5><?=htmlentities($post->importo)?> €</h5>
+            <label><b>Data: </b></label><time datetime="<?=$post->datecreated?>">
+                    <?php
+                    $timestamp = strtotime($post->datecreated);
+                    echo date("d-m-Y", $timestamp); ?></time><br />
+            <label><b>Descrizione: </b></label>  <?=htmlentities($post->descrizione)?><br />
+            <label><b>Categoria:&nbsp</b></label><h5 class="stessa-linea"><?=htmlentities($post->descriz_cat)?></h5><br />
+            <label><b>Tipo:&nbsp</b></label><span><?php if(htmlentities($post->entratauscita) == 0) echo "uscita"; else echo "entrata";?></span><br />
+            <label><b>Importo:&nbsp</b></label><h5 class="stessa-linea"><?=htmlentities($post->importo)?> €</h5><br />
 
 
             <br>
