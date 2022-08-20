@@ -3,8 +3,8 @@
 
         <h1>Modifica la categoria</h1>
 
-        <form action="/categoria/<?=$cats->id?>/store" method="POST" ">
-            <input type="hidden" name="id" value="<?=$cats->id?>">
+        <form action="/categoria/<?=$cats->cat_id?>/store" method="POST" ">
+            <input type="hidden" name="id" value="<?=$cats->cat_id?>">
 
             <div class="form-group">
                 <label for="descrizione">Descrizione</label>

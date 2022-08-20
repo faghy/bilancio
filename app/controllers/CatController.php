@@ -30,11 +30,11 @@ class CatController
         $this->content = view('newCat');
     }
 
-   /* public function editcat( $catid ) {
+   public function editcat( $catid ) {
         $cats = $this->Cat->find($catid);
         $cats_all = $this->Cat->all();
         $this->content =  view('editCat', compact('cats','cats_all'));
-    }*/
+    }
 
     public function save() {
         $this->Cat->save($_POST);

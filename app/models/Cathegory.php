@@ -43,7 +43,7 @@ class Cathegory
     public function find($id) {
 
         $result = [];
-        $sql = 'select * from categorie where id = :id';
+        $sql = 'select * from categorie where cat_id = :id';
         $stm = $this->conn->prepare($sql);
         $stm->execute(['id' => $id]);
         if($stm){
