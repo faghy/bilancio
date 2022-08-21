@@ -1,4 +1,5 @@
 desktop.ini
+.idea/deployment.xml
 /.idea
 /config/database.php
 .DS_Store

@@ -86,7 +86,7 @@ class Cathegory
     public function delete(int $id)
     {
 
-        $sql = 'DELETE FROM categorie WHERE id = :id';
+        $sql = 'DELETE FROM categorie WHERE cat_id = :id';
 
         $stm = $this->conn->prepare($sql);
         $stm->bindParam(':id',$id, PDO::PARAM_INT);
@@ -94,6 +94,5 @@ class Cathegory
 
         return $stm->rowCount();
     }
-
 
 }
