@@ -34,10 +34,13 @@ class Post {
         return $result;
     }
 
-    public function year() {
+    public function year($year) {
         $result = [];
-        $stm = $this->conn->query('select * from movimenti WHERE YEAR ( datecreated ) = 2021 ORDER BY id DESC;');
-
+        $sql = 'select * from movimenti WHERE YEAR ( datecreated ) = YEAR(:anno) ORDER BY id DESC';
+     //   $stm = $this->conn->query('select * from movimenti WHERE YEAR ( datecreated ) = YEAR(:anno) ORDER BY id DESC');
+        $stm = $this->conn->prepare($sql);
+        $stm->execute(['anno' => $year]);
+        die(var_dump($stm->errorInfo()));
         if($stm && $stm->rowCount()){
             $result =  $stm->fetchAll(PDO::FETCH_OBJ);
         }
