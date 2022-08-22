@@ -21,7 +21,6 @@ foreach ($cats as $cat) :
             </td>
         </tr>
 
-
 <?php
 endforeach;
 ?></tbody>

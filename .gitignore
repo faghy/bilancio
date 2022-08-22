@@ -1,6 +1,7 @@
 desktop.ini
 .idea/deployment.xml
 /.idea
+.idea
 /config/database.php
 .DS_Store
 *.swp

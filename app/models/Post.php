@@ -39,11 +39,14 @@ class Post {
         $sql = 'select * from movimenti WHERE YEAR ( datecreated ) = YEAR(:anno) ORDER BY id DESC';
      //   $stm = $this->conn->query('select * from movimenti WHERE YEAR ( datecreated ) = YEAR(:anno) ORDER BY id DESC');
         $stm = $this->conn->prepare($sql);
-        $stm->execute(['anno' => $year]);
         die(var_dump($stm->errorInfo()));
+        $stm->execute(['anno' => $year]);
+
         if($stm && $stm->rowCount()){
             $result =  $stm->fetchAll(PDO::FETCH_OBJ);
+            //die(var_dump($stm->errorInfo()));
         }
+
         return $result;
     }
 

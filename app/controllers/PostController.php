@@ -37,7 +37,7 @@ class PostController {
         $this->content = view('post', compact('post'));
     }
 
-    public function getPostsYear()    {
+    public function getPostsYear() {
         $posts = $this->Post->year($_POST);
         $this->content =  view('posts', compact('posts'));
     }
