@@ -57,7 +57,7 @@ require ('header.php');
         crossorigin="anonymous"></script>
 </body>
 <footer>
-    <h3 id="h3totale-footer" class="h3-totale-footer" onclick="">Totale :  _</h3>
+    <h3 id="h3totale-footer" class="h3-totale-footer" onclick="">Totale :  &nbsp;</h3>
         <script>
             function verificaPasswTotale() {
                 if (document.formPswTot.inputPswTot.value === 'silviovois') {
@@ -66,7 +66,6 @@ require ('header.php');
                     document.getElementById('formPswTotale').style.display='none';
                 } else alert('Password cannata')
                 return false;}
-
         </script>
 
     <form id="formPswTotale" name="formPswTot" />
