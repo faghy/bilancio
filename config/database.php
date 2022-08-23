@@ -5,8 +5,8 @@ return[
     'host' => 'localhost',
     'user' => 'bilancino_admin',
     'password' => 'Fagghy_Hacker20!',
-    'database' => 'bilancino2clic_DB',
-    'dsn' =>'mysql:host=localhost;dbname=bilancino2clic_DB;charset=utf8',
+    'database' => 'bilancino_DB',
+    'dsn' =>'mysql:host=localhost;dbname=bilancino_DB;charset=utf8',
     'pdooptions' => [
         [ PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ],
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]

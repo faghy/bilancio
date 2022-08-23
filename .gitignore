@@ -5,3 +5,4 @@ desktop.ini
 /config/database.php
 .DS_Store
 *.swp
+config/database.php
