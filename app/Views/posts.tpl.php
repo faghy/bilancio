@@ -4,7 +4,7 @@
     <input type="text" name="anno">
     <button class="btn btn-primary rounded-0" type="submit">invia</button>
 </form>
-
+<?php if(isset($conta)) echo"<h5>Totale records: " . $conta . "</h5>"; ?>
 <table class="table table-striped table-hover table-responsive">
     <thead class="thead-dark">
     <tr>

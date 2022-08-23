@@ -42,12 +42,16 @@ class Post {
         $stm = $this->conn->prepare($sql);
 
         $stm->execute(['anno' => $result['anno']]);
-
+        global $contarow;
+        $contarow = $stm->rowCount();
         if($stm && $stm->rowCount()){
             $result =  $stm->fetchAll(PDO::FETCH_OBJ);
            // die(var_dump($stm->errorInfo()));
+            return $result;
+        } else {
+            header( "refresh:5; url=/" );
+            die("<h2 style='text-align: center; color:red;'>Nessun dato disponibile per l'anno scelto!</h2>");
         }
-        return $result;
     }
 
     public function yesterday() {
