@@ -1,10 +1,23 @@
 
 <form action="/posts/cercaAnno" method="POST">
     <label><b>Cerca per anno: </b></label>
-    <input type="text" name="anno">
+    <input type="password" name="password" size="35" id="password" /><br />
+    <input type="submit" id='delete' class='delete' disabled name="delete" value='silviovois' />
+
+    <script>
+        document.getElementById('password').onkeyup = function(){
+            document.getElementById('delete').disabled = false;
+        }
+    </script>
+    <input type="text" name="anno" id="delete2" style="display: none;">
+
     <button class="btn btn-primary rounded-0" type="submit">invia</button>
 </form>
-<?php if(isset($conta)) echo"<h5>Totale records: " . $conta . "</h5>"; ?>
+<?php
+if(isset($conta)) echo"<span>Totale records: <b>" . $conta . "</b></span>";
+if(isset($somma_anno)) echo"<span> - Totale saldo: <b>" . round($somma_anno, 3) . "€</b></span>";?>
+
+
 <table class="table table-striped table-hover table-responsive">
     <thead class="thead-dark">
     <tr>

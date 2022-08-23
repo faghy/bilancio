@@ -40,7 +40,8 @@ class PostController {
     public function getPostsYear() {
         $posts = $this->Post->year($_POST);
         $conta = $GLOBALS['contarow'];
-        $this->content =  view('posts', compact('posts','conta'));
+        $somma_anno = $GLOBALS['somma_anno'];
+        $this->content =  view('posts', compact('posts','conta', 'somma_anno'));
     }
 
     public function getPostsYesterday() {

@@ -37,7 +37,15 @@ class Post {
     public function year(array $year = []) {
         $result = $year;
 
-        $sql = 'select * from movimenti as m INNER JOIN categorie as c ON m.categoria = c.cat_id WHERE YEAR ( datecreated ) = :anno ORDER BY id DESC';
+        $sql2 = 'select sum(importo) from movimenti WHERE YEAR(datecreated) = :anno';
+        $stm2 = $this->conn->prepare($sql2);
+        $stm2->execute(['anno' => $result['anno']]);
+        global $somma_anno;
+        $somma_anno = $stm2->fetch(PDO::FETCH_COLUMN);
+
+
+        $sql = 'select * from movimenti as m INNER JOIN categorie as c 
+    ON m.categoria = c.cat_id WHERE YEAR ( datecreated ) = :anno ORDER BY id DESC';
      //   $stm = $this->conn->query('select * from movimenti WHERE YEAR ( datecreated ) = YEAR(:anno) ORDER BY id DESC');
         $stm = $this->conn->prepare($sql);
 
@@ -52,11 +60,13 @@ class Post {
             header( "refresh:5; url=/" );
             die("<h2 style='text-align: center; color:red;'>Nessun dato disponibile per l'anno scelto!</h2>");
         }
+
     }
 
     public function yesterday() {
         $result = [];
-        $stm = $this->conn->query('SELECT * FROM movimenti as m INNER JOIN categorie as c ON m.categoria = c.cat_id WHERE DATE(datecreated) = DATE(NOW() - INTERVAL 1 DAY)');
+        $stm = $this->conn->query('SELECT * FROM movimenti as m INNER JOIN categorie as c 
+    ON m.categoria = c.cat_id WHERE DATE(datecreated) = DATE(NOW() - INTERVAL 1 DAY)');
 
         if($stm && $stm->rowCount()){
             $result =  $stm->fetchAll(PDO::FETCH_OBJ);
@@ -109,7 +119,7 @@ class Post {
     }
 
     public function somma() {
-        $result = []; ;
+      //  $result = []; ;
         $sql = 'select sum(importo) from movimenti';
         $stm = $this->conn->prepare($sql);
         $stm->execute();
