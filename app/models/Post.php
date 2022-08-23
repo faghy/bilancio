@@ -34,19 +34,19 @@ class Post {
         return $result;
     }
 
-    public function year($year) {
-        $result = [];
-        $sql = 'select * from movimenti WHERE YEAR ( datecreated ) = YEAR(:anno) ORDER BY id DESC';
+    public function year(array $year = []) {
+        $result = $year;
+
+        $sql = 'select * from movimenti as m INNER JOIN categorie as c ON m.categoria = c.cat_id WHERE YEAR ( datecreated ) = :anno ORDER BY id DESC';
      //   $stm = $this->conn->query('select * from movimenti WHERE YEAR ( datecreated ) = YEAR(:anno) ORDER BY id DESC');
         $stm = $this->conn->prepare($sql);
-        die(var_dump($stm->errorInfo()));
-        $stm->execute(['anno' => $year]);
+
+        $stm->execute(['anno' => $result['anno']]);
 
         if($stm && $stm->rowCount()){
             $result =  $stm->fetchAll(PDO::FETCH_OBJ);
-            //die(var_dump($stm->errorInfo()));
+           // die(var_dump($stm->errorInfo()));
         }
-
         return $result;
     }
 

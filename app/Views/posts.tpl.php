@@ -1,8 +1,10 @@
-<a class="nav-link" href="/posts/cercaAnno"><h4>2021</h4></a>
+
 <form action="/posts/cercaAnno" method="POST">
+    <label><b>Cerca per anno: </b></label>
     <input type="text" name="anno">
     <button class="btn btn-primary rounded-0" type="submit">invia</button>
 </form>
+
 <table class="table table-striped table-hover table-responsive">
     <thead class="thead-dark">
     <tr>
@@ -14,6 +16,7 @@
     </thead>
     <tbody>
 <?php
+
 foreach ($posts as $post) :
     ?>
         <tr>
@@ -43,6 +46,7 @@ endforeach;
 //var_dump($cats);
 ?></tbody>
 </table>
+
 
 
 
