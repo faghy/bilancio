@@ -1,16 +1,22 @@
+<label><b>Cerca per anno: </b></label><script>
+    function verificaPasswCercaAnno() {
+        if (document.formPswCercaAnno.inputCercaAnno.value === 'silviovois') {
+            document.getElementById('formCercaAnno').style.display='unset';
 
-<form action="/posts/cercaAnno" method="POST">
-    <label><b>Cerca per anno: </b></label>
-    <input type="password" name="password" size="35" id="password" /><br />
-    <input type="submit" id='delete' class='delete' disabled name="delete" value='silviovois' />
+        } else alert('Password cannata')
+        return false;}
+</script>
 
-    <script>
-        document.getElementById('password').onkeyup = function(){
-            document.getElementById('delete').disabled = false;
-        }
-    </script>
-    <input type="text" name="anno" id="delete2" style="display: none;">
+<form id="formPswCercaAnno" name="formPswCercaAnno" style="display: inline"/>
+<input name="inputCercaAnno" type="password" >
+<input type="submit" onclick="verificaPasswCercaAnno(); return false;" value="Invia" class="btn btn-primary rounded-0">
+</form>
 
+<form id="formCercaAnno" action="/posts/cercaAnno" method="POST" style="display: none">
+    <label><b>Digita l'anno: </b></label>
+
+
+    <input type="text" name="anno" id="delete2" style="display: unset;">
     <button class="btn btn-primary rounded-0" type="submit">invia</button>
 </form>
 <?php
@@ -18,7 +24,7 @@ if(isset($conta)) echo"<span>Totale records: <b>" . $conta . "</b></span>";
 if(isset($somma_anno)) echo"<span> - Totale saldo: <b>" . round($somma_anno, 3) . "€</b></span>";?>
 
 
-<table class="table table-striped table-hover table-responsive">
+<table class="table table-striped table-hover table-responsive" style="margin-top: 10px;">
     <thead class="thead-dark">
     <tr>
         <th>Categoria</th>
