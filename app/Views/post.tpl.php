@@ -21,7 +21,7 @@
 
                     <input type="submit" class="btn btn-primary" value="MODIFICA">
                 </form>
-
+                <br/>
                 <form class="form-inline"  action="/post/<?= $post->id ?>/delete" method="POST">
                     <input type="submit" class="btn btn-danger" value="CANCELLA">
                 </form>
