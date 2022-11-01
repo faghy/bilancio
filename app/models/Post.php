@@ -10,11 +10,22 @@ class Post {
         $this->conn = $conn;
     }
 
-    public function all()    {
+    public function all() {
         $result = [];
-        $stm = $this->conn->query('select * from movimenti as m INNER JOIN categorie as c ON m.categoria = c.cat_id WHERE YEAR ( datecreated ) = YEAR(CURDATE()) ORDER BY id DESC;');
-       // $stm = $this->conn->query('select * from movimenti AS m JOIN categorie AS c ON m.categoria = c.id WHERE YEAR ( datecreated ) = YEAR(CURDATE()) ORDER BY id DESC;');
-       // $stm = $this->conn->query('select * from movimenti as m INNER JOIN categorie as c ON m.categoria = c.id');
+    //    $stm = $this->conn->query('select * from movimenti as m INNER JOIN categorie as c ON m.categoria = c.cat_id WHERE YEAR ( datecreated ) = YEAR(CURDATE()) ORDER BY id DESC;');
+//https://www.html.it/pag/65199/estrazione-dei-dati-e-paginazione/
+        $counter = $this->conn->query("SELECT COUNT(*) FROM movimenti");
+        $row = $counter->rowCount();
+
+        $perpage = 10;
+
+        $page = 1;
+        if(isset($_GET['page'])){$page = filter_var($_GET['page'],FILTER_SANITIZE_NUMBER_INT);}
+        $tot_pagine = ceil($row/$perpage);
+        $pagina_corrente = $page;
+        $primo = ($pagina_corrente-1)*$perpage;
+
+        $stm = $this->conn->query('SELECT * FROM movimenti ORDER BY id DESC LIMIT '.$primo.','.$perpage.' ');
 
         if($stm && $stm->rowCount()){
             $result =  $stm->fetchAll(PDO::FETCH_OBJ);
