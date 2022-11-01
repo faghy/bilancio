@@ -3,7 +3,7 @@
     <div class="col-md-6 push-md-3">
         
  
-<h1>Modifica l'operazione</h1>
+<h1>Modifica l'operazione1</h1>
 
 <form action="/post/<?=$post->id?>/store" method="POST" onsubmit="check()">
     <input type="hidden" name="id" value="<?=$post->id?>">
@@ -39,14 +39,21 @@
         <label for="categoria">Categoria</label>
         <select name="cat">
             <?php
+            $selected = $cats->descriz_cat;
             foreach ($cats as $cat) {
+
                 ?>
-                <option type="" name="categ" id="categoria" value="<?=$cat->cat_id?>"><?php echo $cat->descriz_cat; ?></option>
+
+                <option type="" name="categ" id="categoria" value="<?=$cat->cat_id?>"
+                <?php if($cat->descriz_cat === $selected ) { echo $selected; }?>
+                ><?php echo $cat->descriz_cat; ?></option>
+
                 <?php
             }
             ?>
         </select>
     </div>
+    <h3>=  <?php echo $cats->descriz_cat;?></h3>
 
     <div class="form-group">
         
