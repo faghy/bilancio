@@ -34,7 +34,7 @@ if(isset($somma_anno)) echo"<span> - Totale saldo: <b>" . round($somma_anno, 3) 
     </tr>
     </thead>
     <tbody>
-<?php
+<?php var_dump($_GET);
 
 foreach ($posts as $post) :
     ?>
@@ -62,12 +62,36 @@ foreach ($posts as $post) :
 
 <?php
 endforeach;
-//var_dump($cats);
+
 ?></tbody>
 </table>
 
+<?php
+/*
+while($row = $posts) {
+    $out.='<tr>';
+    $out.='<td>'.$row['id'].'</td>';
+    $out.='<td>'.$row['nome'].'</td>';
+    $out.='<td>'.$row['cognome'].'</td>';
+    $out.='<td>'.$row['email'].'</td>';
+    $out.='<td><a href="?azione=dettaglio&id='.$row['id'].'"><span class="glyphicon glyphicon-zoom-in"></span></a></td>';
+    $out.='<td><a href="?azione=form&id='.$row['id'].'"><span class="glyphicon glyphicon-pencil"></span></a></td>';
+    $out.='<td><a href="?azione=elimina&id='.$row['id'].'"><span class="glyphicon glyphicon-remove"></span></a></td>';
+    $out.='</tr>';
+}
 
 
+$out.='<tr><td colspan="7"><nav><ul class="pagination">';
+                for($i=1; $i<=$tot_pagine; $i++)
+                {
+                $out .='<li><a href="?page='.$i.'">'.$i.'</a></li>';
+                }
+                $out .= "</ul></nav></td></tr>";
+$out.='</table>';
+return($out);
+
+*/
+?>
 
 
 

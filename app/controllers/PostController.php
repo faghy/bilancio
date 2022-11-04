@@ -11,7 +11,7 @@ class PostController {
 
     protected $conn;
     protected $Post;
-   // protected $Cat;
+    protected $Cat;
 
     public function __construct(PDO $conn) {
         $this->conn = $conn;
@@ -25,9 +25,9 @@ class PostController {
 
     public function getPosts()  {
         $posts = $this->Post->all();
-       // $cats = new Cathegory($this->conn);
-       // $cats = $cats->allpostid($postid);
-        $this->content =  view('posts', compact('posts', ));
+      //  $cats = new Cathegory($this->conn);
+       // $cats = $this->Cat->all();
+        $this->content =  view('posts', compact('posts' ));
     }
 
     public function show( $postid ) {

@@ -17,18 +17,21 @@ class Post {
         $counter = $this->conn->query("SELECT COUNT(*) FROM movimenti");
         $row = $counter->rowCount();
 
-        $perpage = 10;
+        $perpage = 5;
 
         $page = 1;
-        if(isset($_GET['page'])){$page = filter_var($_GET['page'],FILTER_SANITIZE_NUMBER_INT);}
+        if(isset($_GET['page'])){ $page = filter_var($_GET['page'],FILTER_SANITIZE_NUMBER_INT); }
         $tot_pagine = ceil($row/$perpage);
         $pagina_corrente = $page;
         $primo = ($pagina_corrente-1)*$perpage;
+        echo $primo;
 
-        $stm = $this->conn->query('SELECT * FROM movimenti ORDER BY id DESC LIMIT '.$primo.','.$perpage.' ');
+
+        $stm = $this->conn->query('SELECT * FROM movimenti as m INNER JOIN categorie as c ON m.categoria = c.cat_id 
+         WHERE YEAR ( datecreated ) = YEAR(CURDATE()) ORDER BY id DESC LIMIT '.$primo.','.$perpage.' ');
 
         if($stm && $stm->rowCount()){
-            $result =  $stm->fetchAll(PDO::FETCH_OBJ);
+            $result = $stm->fetchAll(PDO::FETCH_OBJ);
         }
         return $result;
     }
