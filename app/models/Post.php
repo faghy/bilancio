@@ -12,9 +12,10 @@ class Post {
 
     public function all() {
         $result = [];
-    //    $stm = $this->conn->query('select * from movimenti as m INNER JOIN categorie as c ON m.categoria = c.cat_id WHERE YEAR ( datecreated ) = YEAR(CURDATE()) ORDER BY id DESC;');
+        $stm = $this->conn->query('select * from movimenti as m INNER JOIN categorie as c ON m.categoria = c.cat_id WHERE YEAR ( datecreated ) = YEAR(CURDATE()) ORDER BY id DESC;');
 //https://www.html.it/pag/65199/estrazione-dei-dati-e-paginazione/
-        $counter = $this->conn->query("SELECT COUNT(*) FROM movimenti");
+        //https://github.com/hanielz/PHP-Pagination/blob/master/class/Config.php
+   /*     $counter = $this->conn->query("SELECT COUNT(*) FROM movimenti");
         $row = $counter->rowCount();
 
         $perpage = 5;
@@ -29,7 +30,7 @@ class Post {
 
         $stm = $this->conn->query('SELECT * FROM movimenti as m INNER JOIN categorie as c ON m.categoria = c.cat_id 
          WHERE YEAR ( datecreated ) = YEAR(CURDATE()) ORDER BY id DESC LIMIT '.$primo.','.$perpage.' ');
-
+*/
         if($stm && $stm->rowCount()){
             $result = $stm->fetchAll(PDO::FETCH_OBJ);
         }
