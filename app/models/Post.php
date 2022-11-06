@@ -37,6 +37,26 @@ class Post {
         return $result;
     }
 
+    /*FUNGSI total_records() UNTUK MENGHITUNG BANYAKNYA DATA DALAM TABEL*/
+    public function total_records()
+    {
+        $stmt = $this->conn->prepare("SELECT id FROM movimenti");
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
+
+    /*FUNGSI get_data() UNTUK MENAMPILKAN DATA DI HALAMAN BROWSER*/
+    public function get_data($start,$limit)
+    {
+
+        $stmt = $this->conn->prepare("SELECT * FROM movimenti LIMIT $start,$limit");
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+
+
     public function find($id) {
 
         $result = [];
