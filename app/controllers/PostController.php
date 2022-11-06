@@ -10,7 +10,7 @@ class PostController {
     public $content ='';
 
     protected $total_records;
-    protected $limit = 15;
+    protected $limit = 40;
 
     protected $conn;
     protected $Post;
