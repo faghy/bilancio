@@ -69,45 +69,19 @@ endforeach;
 
 <?php
 if(isset($post_controller)) {
-?>
-<hr>
-<a href="?page=<?php echo $post_controller->prev_page()?>"> << </a>
-<?php
-for ($i=1; $i<=$pages; $i++):?>
-    <a class="<?php echo $post_controller->is_active_page($i) ?>" href="?page=<?php echo $i?>"><?php echo $i?></a>
-<?php endfor;?>
-<a href="?page=<?php echo $post_controller->next_page()?>"> >> </a>
-<?php
+    ?>
+    <hr>
+    <a href="?page=<?php echo $post_controller->prev_page()?>"> <i class="bi bi-arrow-left-square-fill"></i> </a>
+    <?php
+    for ($i=1; $i<=$pages; $i++):?>
+        <a class="<?php echo $post_controller->is_active_page($i) ?>" href="?page=<?php echo $i?>"><?php echo $i?></a>
+    <?php endfor;?>
+    <a href="?page=<?php echo $post_controller->next_page()?>"> <i class="bi bi-arrow-right-square-fill"></i> </a>
+    <?php
 }
 ?>
 
-
-<?php
-/*
-while($row = $posts) {
-    $out.='<tr>';
-    $out.='<td>'.$row['id'].'</td>';
-    $out.='<td>'.$row['nome'].'</td>';
-    $out.='<td>'.$row['cognome'].'</td>';
-    $out.='<td>'.$row['email'].'</td>';
-    $out.='<td><a href="?azione=dettaglio&id='.$row['id'].'"><span class="glyphicon glyphicon-zoom-in"></span></a></td>';
-    $out.='<td><a href="?azione=form&id='.$row['id'].'"><span class="glyphicon glyphicon-pencil"></span></a></td>';
-    $out.='<td><a href="?azione=elimina&id='.$row['id'].'"><span class="glyphicon glyphicon-remove"></span></a></td>';
-    $out.='</tr>';
-}
-
-
-$out.='<tr><td colspan="7"><nav><ul class="pagination">';
-                for($i=1; $i<=$tot_pagine; $i++)
-                {
-                $out .='<li><a href="?page='.$i.'">'.$i.'</a></li>';
-                }
-                $out .= "</ul></nav></td></tr>";
-$out.='</table>';
-return($out);
-
-*/
-?>
+<div class="div-spaziatore"></div>
 
 
 

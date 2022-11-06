@@ -13,31 +13,18 @@ class Post {
     public function all() {
         $result = [];
         $stm = $this->conn->query('select * from movimenti as m INNER JOIN categorie as c ON m.categoria = c.cat_id WHERE YEAR ( datecreated ) = YEAR(CURDATE()) ORDER BY id DESC;');
-//https://www.html.it/pag/65199/estrazione-dei-dati-e-paginazione/
-        //https://github.com/hanielz/PHP-Pagination/blob/master/class/Config.php
-   /*     $counter = $this->conn->query("SELECT COUNT(*) FROM movimenti");
-        $row = $counter->rowCount();
-
-        $perpage = 5;
-
-        $page = 1;
-        if(isset($_GET['page'])){ $page = filter_var($_GET['page'],FILTER_SANITIZE_NUMBER_INT); }
-        $tot_pagine = ceil($row/$perpage);
-        $pagina_corrente = $page;
-        $primo = ($pagina_corrente-1)*$perpage;
-        echo $primo;
 
 
         $stm = $this->conn->query('SELECT * FROM movimenti as m INNER JOIN categorie as c ON m.categoria = c.cat_id 
          WHERE YEAR ( datecreated ) = YEAR(CURDATE()) ORDER BY id DESC LIMIT '.$primo.','.$perpage.' ');
-*/
+
         if($stm && $stm->rowCount()){
             $result = $stm->fetchAll(PDO::FETCH_OBJ);
         }
         return $result;
     }
 
-    /*FUNGSI total_records() UNTUK MENGHITUNG BANYAKNYA DATA DALAM TABEL*/
+    /* total_records() PER CALCOLARE I LOTTI DI DATI IN TABELLA*/
     public function total_records()
     {
         $stmt = $this->conn->prepare("SELECT id FROM movimenti");
@@ -45,7 +32,7 @@ class Post {
         return $stmt->rowCount();
     }
 
-    /*FUNGSI get_data() UNTUK MENAMPILKAN DATA DI HALAMAN BROWSER*/
+    /* get_data() PER VISUALIZZARE I DATI SULLA PAGINA DEL BROWSER*/
     public function get_data($start,$limit)
     {
         $sql = "select * from movimenti as m INNER JOIN categorie as c ON m.categoria = c.cat_id 
