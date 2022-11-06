@@ -48,8 +48,9 @@ class Post {
     /*FUNGSI get_data() UNTUK MENAMPILKAN DATA DI HALAMAN BROWSER*/
     public function get_data($start,$limit)
     {
-
-        $stmt = $this->conn->prepare("SELECT * FROM movimenti LIMIT $start,$limit");
+        $sql = "select * from movimenti as m INNER JOIN categorie as c ON m.categoria = c.cat_id 
+         WHERE YEAR ( datecreated ) = YEAR(CURDATE()) ORDER BY id DESC LIMIT $start,$limit;";
+        $stmt = $this->conn->prepare($sql);
 
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);

@@ -9,10 +9,8 @@ class PostController {
     protected $layout = 'layout/index.tpl.php';
     public $content ='';
 
-    protected $table;
     protected $total_records;
-    protected $limit = 5;
-    protected $config;
+    protected $limit = 15;
 
     protected $conn;
     protected $Post;
@@ -22,7 +20,6 @@ class PostController {
         $this->conn = $conn;
         $this->Post = new Post($conn);
         $this->Cat = new Cathegory($conn);
-
         $this->total_records = $this->Post->total_records();
     }
 
@@ -31,41 +28,43 @@ class PostController {
     }
 
     public function getPosts()  {
-        $posts = $this->Post->all();
+     /*   $posts = $this->Post->all();
       //  $cats = new Cathegory($this->conn);
-       // $cats = $this->Cat->all();
-        $this->content = view('posts', compact('posts' ));
-    }
+       // $cats = $this->Cat->all();*/
 
-    public function controller_get_data()
-    {
+        $pages = $this->get_pagination_numbers();
+        $post_controller = $this;
+
         $start = 0;
-
         if ($this->current_page() > 1 ) {
             $start = ($this->current_page()*$this->limit) - $this->limit;
         }
-        return $this->config->get_data($start,$this->limit);
+        $posts = $this->Post->get_data($start,$this->limit);
+
+
+        $this->content = view('posts', compact('posts', 'pages', 'post_controller' ));
     }
-    /*FUNGSI current_page() MENGAMBIL POSISI HALAMAN YANG SEDANG DITAMPILKAN*/
+
+
+    /* current_page() PRENDE POSIZIONE DELLA PAGINA CHE STA PUBBLICANDO*/
     public function current_page()
     {
         return isset($_GET['page']) ? (int)$_GET['page'] : 1;
     }
 
-    /*FUNGSI get_pagination_numbers() MENGAMBIL TOTAL JUMLAH HALAMAN */
+    /* get_pagination_numbers() RICHIEDE IL NUMERO TOTALE DI PAGINE */
     public function get_pagination_numbers()
     {
         return ceil($this->total_records / $this->limit);
     }
 
-    /*FUNGSI PINDAH SATU HALAMAN SEBELUMNYA*/
+    /*SPOSTA DI UNA PAGINA PRECEDENTE*/
     public function prev_page()
     {
-
         return ($this->current_page() != 1 ) ? $this->current_page() - 1 : 1;
     }
 
-    /*FUNGSI PINDAH SATU HALAMAN SESUDAHNYA*/
+    /* SPOSTA DI UNA PAGINA SUCCESSIVA */
     public function next_page()
     {
         return(	$this->current_page() < $this->get_pagination_numbers() ) ? $this->current_page() + 1 : $this->get_pagination_numbers();

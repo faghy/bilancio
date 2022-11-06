@@ -1,3 +1,4 @@
+
 <label><b>Cerca per anno: </b></label><script>
     function verificaPasswCercaAnno() {
         if (document.formPswCercaAnno.inputCercaAnno.value === 'silviovois') {
@@ -34,7 +35,7 @@ if(isset($somma_anno)) echo"<span> - Totale saldo: <b>" . round($somma_anno, 3) 
     </tr>
     </thead>
     <tbody>
-<?php var_dump($_GET);
+<?php
 
 foreach ($posts as $post) :
     ?>
@@ -65,6 +66,18 @@ endforeach;
 
 ?></tbody>
 </table>
+
+<hr>
+<a href="?page=<?php echo $post_controller->prev_page()?>"> << </a>
+<?php
+
+
+for ($i=1; $i<=$pages; $i++):?>
+    <a class="<?php echo $post_controller->is_active_page($i) ?>" href="?page=<?php echo $i?>"><?php echo $i?></a>
+<?php endfor;?>
+<a href="?page=<?php echo $post_controller->next_page()?>"> >> </a>
+
+
 
 <?php
 /*

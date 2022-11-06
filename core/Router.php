@@ -66,8 +66,7 @@ class Router {
             }
         }
        throw new Exception('Nessuna rotta trovata per ' . $uri);
- 
-      
+
     }
 
           protected function route($callback, array $matches =[])
