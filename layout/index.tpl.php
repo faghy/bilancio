@@ -71,8 +71,9 @@ require ('header.php');
     <form id="formPswTotale" name="formPswTot" />
         <input name="inputPswTot" type="password" >
         <input type="submit" onclick="verificaPasswTotale(); return false;" value="Invia">
+    <h3 class="orario"><?=date('Y-m-d ')?></h3>
     </form>
 
-    <h3 class="orario"><?=date('Y-m-d ')?></h3>
+
 </footer>
 </html>
